@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'CustomBottomNav.dart';
+import 'VerTodos.dart';
 import 'custom_icons.dart';
+import 'CategoriesScreen.dart';
 
 void main() {
   SystemChrome.setEnabledSystemUIOverlays([]);
@@ -22,9 +24,28 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: <Widget>[
             HomeScreenTopContainer(),
-            HomeScreenBottomContainer("Trending Populares"),
-            HomeScreenBottomContainer("Features Ads"),
-            HomeScreenBottomContainer("Top Deals"),
+            HomeScreenBottomContainer("Temas Populares",
+                [
+                  "Play Station",
+                  "Joyas",
+                  "Electronica"
+                ],
+                [
+                  "https://cdn.vox-cdn.com/thumbor/hkEmn3I0RKrlC2a3yvWZDnGogbM=/0x0:2040x1360/1200x800/filters:focal(873x1034:1199x1360)/cdn.vox-cdn.com/uploads/chorus_image/image/56030491/awebster_080217_1891_7286.0.jpg",
+                  "https://www.dhresource.com/0x0s/f2-albu-g4-M00-FB-E3-rBVaEVe-qX2ABjNHAAMiAhhMwxE456.jpg/conjunto-de-joyas-vintage-nj-578-cobre-antiguo.jpg",
+                  "http://setup-pc.es/wp-content/uploads/2018/09/setup-pc_tpv_soluciones_punto_de_venta_02.jpg"
+                ]),
+            HomeScreenBottomContainer("Tipos de Anuncio",
+                [
+                  "Coches",
+                  "Trabajos",
+                  "Propiedades"
+                ],
+                [
+                  "https://cms-img.coverfox.com/closeup-headlights-red-vintage-car-exhibition-508127503(1200x628).jpg",
+                  "https://cdn.pembrokeshire.gov.uk/images/apply-jobs-eng.jpg",
+                  "https://www.architecture.com/-/media/a2956208e1a44fd2b1aea5b89df6f7f6.jpg"
+                ]),
           ],
         ),
       ),
@@ -53,6 +74,9 @@ class HomeScreenTopContainer extends StatelessWidget {
           Row(
             children: <Widget>[
               InkWell(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (contex) => CategoriesScreen("Motor")));
+                },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                   decoration: BoxDecoration(
@@ -83,34 +107,44 @@ class HomeScreenTopContainer extends StatelessWidget {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 4.0),
-                          decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.all(Radius.circular(5.0))
-                          ),
-                          height: 50.0,
-                          child: Row(
-                            children: <Widget>[
-                              Icon(Icons.flight,color: Colors.white,size: 20.0,),
-                              SizedBox(width: 5.0,),
-                              Text("Etiquetas",style: TextStyle(color: Colors.white,fontSize: 12.0),),
-                            ],
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => CategoriesScreen("Etiquetas")));
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 4.0),
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.all(Radius.circular(5.0))
+                            ),
+                            height: 50.0,
+                            child: Row(
+                              children: <Widget>[
+                                Icon(Icons.flight,color: Colors.white,size: 20.0,),
+                                SizedBox(width: 5.0,),
+                                Text("Etiquetas",style: TextStyle(color: Colors.white,fontSize: 12.0),),
+                              ],
+                            ),
                           ),
                         ),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 4.0),
-                          decoration: BoxDecoration(
-                              color: Colors.lightBlueAccent,
-                              borderRadius: BorderRadius.all(Radius.circular(5.0))
-                          ),
-                          height: 50.0,
-                          child: Row(
-                            children: <Widget>[
-                              Icon(Icons.home,color: Colors.white, size: 20.0,),
-                              SizedBox(width: 5.0,),
-                              Text("Propiedades",style: TextStyle(color: Colors.white,fontSize: 12.0),),
-                            ],
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => CategoriesScreen("Propiedades")));
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 4.0),
+                            decoration: BoxDecoration(
+                                color: Colors.lightBlueAccent,
+                                borderRadius: BorderRadius.all(Radius.circular(5.0))
+                            ),
+                            height: 50.0,
+                            child: Row(
+                              children: <Widget>[
+                                Icon(Icons.home,color: Colors.white, size: 20.0,),
+                                SizedBox(width: 5.0,),
+                                Text("Propiedades",style: TextStyle(color: Colors.white,fontSize: 12.0),),
+                              ],
+                            ),
                           ),
                         )
                       ],
@@ -118,34 +152,44 @@ class HomeScreenTopContainer extends StatelessWidget {
                     SizedBox(height: 8.0,),
                     Row(
                       children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        decoration: BoxDecoration(
-                            color: Colors.deepOrange,
-                            borderRadius: BorderRadius.all(Radius.circular(5.0))
-                        ),
-                        height: 50.0,
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.settings,color: Colors.white, size: 20.0,),
-                            SizedBox(width: 5.0,),
-                            Text("Servicios",style: TextStyle(color: Colors.white,fontSize: 12.0),),
-                          ],
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => CategoriesScreen("Servicios") ));
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          decoration: BoxDecoration(
+                              color: Colors.deepOrange,
+                              borderRadius: BorderRadius.all(Radius.circular(5.0))
+                          ),
+                          height: 50.0,
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.settings,color: Colors.white, size: 20.0,),
+                              SizedBox(width: 5.0,),
+                              Text("Servicios",style: TextStyle(color: Colors.white,fontSize: 12.0),),
+                            ],
+                          ),
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        decoration: BoxDecoration(
-                            color: Colors.orange,
-                            borderRadius: BorderRadius.all(Radius.circular(5.0))
-                        ),
-                        height: 50.0,
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.flight,color: Colors.white, size: 20.0,),
-                            SizedBox(width: 5.0,),
-                            Text("Trabajos",style: TextStyle(color: Colors.white,fontSize: 12.0),),
-                          ],
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => CategoriesScreen("Trabajos")));
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          decoration: BoxDecoration(
+                              color: Colors.orange,
+                              borderRadius: BorderRadius.all(Radius.circular(5.0))
+                          ),
+                          height: 50.0,
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.flight,color: Colors.white, size: 20.0,),
+                              SizedBox(width: 5.0,),
+                              Text("Trabajos",style: TextStyle(color: Colors.white,fontSize: 12.0),),
+                            ],
+                          ),
                         ),
                       ),
 
@@ -163,8 +207,9 @@ class HomeScreenTopContainer extends StatelessWidget {
 
 class HomeScreenBottomContainer extends StatelessWidget {
   final String nombreSlide;
+  final List<String> nameCard, imageUrl;
 
-  HomeScreenBottomContainer(this.nombreSlide);
+  HomeScreenBottomContainer(this.nombreSlide, this.nameCard, this.imageUrl);
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +222,7 @@ class HomeScreenBottomContainer extends StatelessWidget {
               children: <Widget>[
                 Text(nombreSlide,style: TextStyle(fontWeight: FontWeight.bold),),
                 Spacer(),
-                Text("Ver todos",style: TextStyle(color: Colors.greenAccent,fontWeight: FontWeight.bold),)
+                InkWell(onTap:(){Navigator.push(context, MaterialPageRoute(builder: (context) => VerTodos(nombreSlide)));},child: Text("Ver todos",style: TextStyle(color: Colors.greenAccent,fontWeight: FontWeight.bold),))
               ],
             ),
           ),
@@ -186,9 +231,10 @@ class HomeScreenBottomContainer extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
-                CustomCards("Play Station","https://cms-img.coverfox.com/closeup-headlights-red-vintage-car-exhibition-508127503(1200x628).jpg"),
-                CustomCards("Joyas","https://www.dhresource.com/0x0s/f2-albu-g4-M00-FB-E3-rBVaEVe-qX2ABjNHAAMiAhhMwxE456.jpg/conjunto-de-joyas-vintage-nj-578-cobre-antiguo.jpg"),
-                CustomCards("Electronica","http://setup-pc.es/wp-content/uploads/2018/09/setup-pc_tpv_soluciones_punto_de_venta_02.jpg"),
+                CustomCards(nameCard[0],imageUrl[0]),
+                CustomCards(nameCard[1],imageUrl[1]),
+                CustomCards(nameCard[2],imageUrl[2]),
+                CustomCards(nameCard[2],imageUrl[2]),
               ],
             ),
           )
